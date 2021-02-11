@@ -20,8 +20,6 @@ RARE_PERC = 0.001
 
 CATEGORICAL_VARIABLES = ['playerName']
 
-NUMERICAL_VARIABLES = [] # not needed here
-
 FEATURE_LIST = ['minsPlayed', 'goalsScored', 'assists', 'cleanSheets',
                 'goalsConceded', 'ownGoals', 'penSaved', 'yelCards', 'redCards',
                 'saves', 'bonus', 'influence', 'creativity', 'threat',
@@ -29,6 +27,10 @@ FEATURE_LIST = ['minsPlayed', 'goalsScored', 'assists', 'cleanSheets',
     # will have to manually add this
     # points and oppositionTeam needs dropping as well
 
+NUMERICAL_VARIABLES = [
+	var for var in FEATURE_LIST
+	if var not in CATEGORICAL_VARIABLES	
+	]
+
 # # do we need a num_na_not_allowed and cat_na_not_allowed
-                
-            
+# # not needed for me...

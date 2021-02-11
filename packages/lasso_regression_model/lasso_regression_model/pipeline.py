@@ -2,8 +2,8 @@ from sklearn.linear_model import Lasso # model
 from sklearn.pipeline import Pipeline # sklearn.pipeline
 from sklearn.preprocessing import MinMaxScaler # scaler
 
-import preprocessors as pps
-import config as cfg
+from lasso_regression_model.processing import preprocessors as pps
+from lasso_regression_model.config import config as cfg
 
 
 ffml_pipe = Pipeline(

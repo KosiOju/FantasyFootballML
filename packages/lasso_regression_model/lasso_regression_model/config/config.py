@@ -1,14 +1,15 @@
 import pathlib
 
-from sklearn.linear_model import Lasso
+# from sklearn.linear_model import Lasso
+import lasso_regression_model
 
 PACKAGE_ROOT = pathlib.Path(lasso_regression_model.__file__).resolve().parent
 TRAINED_MODEL_DIR = PACKAGE_ROOT / "trained_models"
 DATASET_DIR = PACKAGE_ROOT / "datasets"
 
 # data
-TESTING_DATA_FILE = "test.csv"
-TRAINING_DATA_FILE = "train.csv"
+TESTING_DATA_FILE = "xtest.csv"
+TRAINING_DATA_FILE = "xtrain.csv"
 TARGET = 'points'
 
 # # PIPELINE_NAME = 'lasso_regression.pkl'

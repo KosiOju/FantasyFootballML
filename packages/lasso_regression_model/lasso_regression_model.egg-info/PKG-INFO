@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: lasso-regression-model
+Version: 0.1.0
+Summary: Train and deploy the lasso regression model
+Home-page: https://github.com/AnonamousCollective/FantasyFootballML
+Author: AnonamousCollective
+Author-email: insert@email.com
+License: MIT
+Description: Train and deploy the lasso regression model
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.8.0
+Description-Content-Type: text/markdown

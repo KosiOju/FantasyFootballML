@@ -11,3 +11,8 @@ joblib>=0.17.0,<0.18.0
 
 # testing requirements
 pytest>=6.1.1,<6.2.0
+
+# packaging
+setuptools>=50.3.1,<51.0.0
+wheel>=0.33.6,<0.34.0
+# not sure the best version of wheel to install

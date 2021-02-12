@@ -3,6 +3,12 @@ from sklearn.model_selection import train_test_split
 from lasso_regression_model import pipeline
 from lasso_regression_model.processing.data_management import load_dataset, save_pipeline
 from lasso_regression_model.config import config as cfg
+from lasso_regression_model import __version__ as _version
+
+import logging
+
+
+_logger = logging.getLogger(__name__)
 
 
 def run_training():
@@ -23,6 +29,7 @@ def run_training():
 
     pipeline.ffml_pipe.fit(X_train[cfg.FEATURE_LIST], y_train)
     
+    _logger.info(f"saving model version: {_version}")
     save_pipeline(pipeline_to_persist=pipeline.ffml_pipe)
     
     print('Model trained...')

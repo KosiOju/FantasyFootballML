@@ -5,6 +5,11 @@ from sklearn.preprocessing import MinMaxScaler # scaler
 from lasso_regression_model.processing import preprocessors as pps
 from lasso_regression_model.config import config as cfg
 
+import logging
+
+
+_logger = logging.getLogger(__name__)
+
 
 ffml_pipe = Pipeline(
     # complete with the list of steps from the pps file

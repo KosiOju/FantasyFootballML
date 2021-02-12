@@ -1,7 +1,13 @@
 import pathlib
 
-# from sklearn.linear_model import Lasso
 import lasso_regression_model
+
+import pandas as pd
+
+
+pd.options.display.max_rows = 10
+pd.options.display.max_columns = 10
+
 
 PACKAGE_ROOT = pathlib.Path(lasso_regression_model.__file__).resolve().parent
 TRAINED_MODEL_DIR = PACKAGE_ROOT / "trained_models"
@@ -34,3 +40,10 @@ NUMERICAL_VARIABLES = [
 
 # # do we need a num_na_not_allowed and cat_na_not_allowed
 # # not needed for me...
+
+
+PIPELINE_NAME = 'lasso_regression' # ERROR POSIBILITY
+PIPELINE_SAVE_FILE = f"{PIPELINE_NAME}_output_v"
+
+# used for differential testing
+ACCEPTABLE_MODEL_DIFFERENCE = 0.5

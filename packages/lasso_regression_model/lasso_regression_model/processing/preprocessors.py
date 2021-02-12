@@ -4,6 +4,8 @@ import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin #REMEMBER
 from sklearn.preprocessing import OrdinalEncoder
 
+from lasso_regression_model.processing.errors import InvalidModelInputError
+
 
 # feature engineer rare labels
 class RareCategoricalVariables(BaseEstimator, TransformerMixin):
@@ -58,8 +60,8 @@ class OrdinalEncodeCategoricalVariables(BaseEstimator, TransformerMixin):
         # add points column to X so groupby works!
         
         #X = X.copy()
-        print()
-        print(X.dtypes)
+        #print()
+        #print(X.dtypes)
         
         self.enc = OrdinalEncoder()
         self.enc.fit(X[self.variables])
@@ -69,12 +71,17 @@ class OrdinalEncodeCategoricalVariables(BaseEstimator, TransformerMixin):
     def transform(self, X):
         
         X[self.variables] = self.enc.transform(X[self.variables])
-        print()
-        print(X.dtypes)
+        #print()
+        #print(X.dtypes)
         
         return X
     
-    
+
+"""
+ I SHULD HAVE A GO AT ENCODING WITHOUT ORDINAL ENCODER
+"""
+
+
 # Feature Scaling --> kinda the same as the train and transform scaler
 
 # ... happens in the pipeline ...

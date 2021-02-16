@@ -3,7 +3,7 @@ from lasso_regression_model.config import config as cfg
 import pandas as pd
 
 
-def validate_inputs(input_data: pd.DataFrame) -> pd.DataFrame:
+def validate_inputs(input_data: pd.DataFrame) -> pd.DataFrame: # used in predict.py
 	# -> shows what type the returned variable will be
 	# check model inputs for unprocessable values
 

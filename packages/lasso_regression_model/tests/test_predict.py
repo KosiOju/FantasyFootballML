@@ -2,6 +2,7 @@ import math
 
 from lasso_regression_model.predict import make_prediction
 from lasso_regression_model.processing.data_management import load_dataset
+from lasso_regression_model.config import config as cfg
 
 
 def test_make_single_prediction():
@@ -35,7 +36,7 @@ def test_make_multiple_predictions():
 
 	# then
 	assert  subject is not None
-	assert len(subject.get('predictions')) == 1034
+	assert len(subject.get('predictions')) == 1034 # white box testing
 
 	# we dont expect any rows to be filtered out
 	assert len(subject.get('predictions')) == original_data_length

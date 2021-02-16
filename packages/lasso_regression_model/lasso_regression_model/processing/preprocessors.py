@@ -45,40 +45,49 @@ class RareCategoricalVariables(BaseEstimator, TransformerMixin):
 
 # ordinal encode cat vars
 class OrdinalEncodeCategoricalVariables(BaseEstimator, TransformerMixin):
-    # order and encode categorical variables
-    # self.variables --> CATEGORICAL_VARIABLES
-    
+    """String to numbers categorical encoder."""
+
     def __init__(self, variables=None):
-        
         if not isinstance(variables, list):
             self.variables = [variables]
         else:
             self.variables = variables
-    
-    def fit(self, X, y=None):
-        # get_dummies isn't appropriate so use ordinal_map
-        # add points column to X so groupby works!
-        
-        #X = X.copy()
-        #print()
-        #print(X.dtypes)
-        
-        self.enc = OrdinalEncoder()
-        self.enc.fit(X[self.variables])
-        
+
+    def fit(self, X, y):
+        temp = pd.concat([X, y], axis=1)
+        temp.columns = list(X.columns) + ["points"] # will be "points" instead of "target"
+
+        # persist transforming dictionary
+        self.encoder_dict_ = {} # created to store the encoded values
+
+        for var in self.variables:
+            t = temp.groupby([var])["points"].mean().sort_values(ascending=True).index
+            self.encoder_dict_[var] = {k: i for i, k in enumerate(t, 0)}
+
         return self
-    
+
     def transform(self, X):
-        
-        X[self.variables] = self.enc.transform(X[self.variables])
-        #print()
-        #print(X.dtypes)
-        
+        # encode labels
+        X = X.copy() # so as not to transform the real data
+        for feature in self.variables:
+            X[feature] = X[feature].map(self.encoder_dict_[feature])
+
+        # check if transformer introduces NaN
+        if X[self.variables].isnull().any().any():
+            null_counts = X[self.variables].isnull().any()
+            vars_ = {
+                key: value for (key, value) in null_counts.items() if value is True
+            }
+            raise InvalidModelInputError(
+                f"Categorical encoder has introduced NaN when "
+                f"transforming categorical variables: {vars_.keys()}"
+            )
+
         return X
     
 
 """
- I SHULD HAVE A GO AT ENCODING WITHOUT ORDINAL ENCODER
+ I SHULD HAVE A GO AT ENCODING WITHOUT ORDINAL ENCODER - done! (copied the code still)
 """
 
 

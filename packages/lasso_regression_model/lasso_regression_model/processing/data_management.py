@@ -11,7 +11,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-def load_dataset(*, file_name: str):
+def load_dataset(*, file_name: str): # pandas to read csv files
 	_data = pd.read_csv(f"{cfg.DATASET_DIR}/{file_name}")
 	
 	return _data

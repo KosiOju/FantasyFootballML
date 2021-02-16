@@ -55,20 +55,20 @@ class OrdinalEncodeCategoricalVariables(BaseEstimator, TransformerMixin):
 
     def fit(self, X, y):
         temp = pd.concat([X, y], axis=1)
-        temp.columns = list(X.columns) + ["target"]
+        temp.columns = list(X.columns) + ["points"] # will be "points" instead of "target"
 
         # persist transforming dictionary
-        self.encoder_dict_ = {}
+        self.encoder_dict_ = {} # created to store the encoded values
 
         for var in self.variables:
-            t = temp.groupby([var])["target"].mean().sort_values(ascending=True).index
+            t = temp.groupby([var])["points"].mean().sort_values(ascending=True).index
             self.encoder_dict_[var] = {k: i for i, k in enumerate(t, 0)}
 
         return self
 
     def transform(self, X):
         # encode labels
-        X = X.copy()
+        X = X.copy() # so as not to transform the real data
         for feature in self.variables:
             X[feature] = X[feature].map(self.encoder_dict_[feature])
 
@@ -87,7 +87,7 @@ class OrdinalEncodeCategoricalVariables(BaseEstimator, TransformerMixin):
     
 
 """
- I SHULD HAVE A GO AT ENCODING WITHOUT ORDINAL ENCODER
+ I SHULD HAVE A GO AT ENCODING WITHOUT ORDINAL ENCODER - done! (copied the code still)
 """
 
 
